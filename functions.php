@@ -113,12 +113,15 @@ function preparePortfolio(int $numberOfRows = 2, int $numberOfCols = 4): array
 
 function finishPortfolio()
 {
+    $json = file_get_contents("data/datas.json");
+    $data = json_decode($json, true);
     $portfolio = preparePortfolio();
+    $text = $data["napisy"];
     foreach ($portfolio as $row => $col) {
         echo '<div class="row">';
         foreach ($col as $index) {
             echo '<div class="col-25 portfolio text-white text-center" id="portfolio-' . $index . '">
-                            Web stránka ' . $index . '
+                            ' . $text[$index - 1]  . '
                          </div>';
         }
         echo '</div>';
